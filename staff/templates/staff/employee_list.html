@@ -1,0 +1,62 @@
+{% extends 'staff/base.html' %}
+
+{% block title %}Сотрудники компании{% endblock %}
+
+{% block content %}
+<div class="content-section">
+    <div class="section-header">
+        <h1 class="page-title">Команда компании</h1>
+        <p class="page-subtitle">Управление персоналом и информацией о сотрудниках</p>
+    </div>
+    
+    <div class="table-card">
+        <div class="table-header">
+            <h3>Список сотрудников</h3>
+            <a href="{% url 'add_employee' %}" class="btn-primary">
+                <span class="btn-icon">+</span>
+                Новый сотрудник
+            </a>
+        </div>
+        
+        <div class="table-wrapper">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th>ФИО сотрудника</th>
+                        <th>Контактный email</th>
+                        <th>Телефон</th>
+                        <th>Должность</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in employees %}
+                    <tr class="table-row">
+                        <td class="text-center employee-id">{{ employee.tab_number }}</td>
+                        <td class="employee-name">
+                            <strong>{{ employee.full_name }}</strong>
+                        </td>
+                        <td class="employee-email">{{ employee.email }}</td>
+                        <td class="employee-phone">{{ employee.phone }}</td>
+                        <td class="employee-position">
+                            <span class="position-badge">{{ employee.position }}</span>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="empty-state">
+                            <div class="empty-content">
+                                <span class="empty-icon">👥</span>
+                                <p>Сотрудники не найдены</p>
+                                <a href="{% url 'add_employee' %}" class="btn-outline">Добавить первого сотрудника</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+[file content end]

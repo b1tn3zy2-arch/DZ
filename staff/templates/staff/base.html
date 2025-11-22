@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HR Management System{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>HR Portal</h1>
+            </div>
+            <nav class="main-nav">
+                <a href="{% url 'employee_list' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">
+                    <span class="nav-icon">🏠</span>
+                    Главная
+                </a>
+                <a href="{% url 'schedule' %}" class="nav-link {% if request.path == '/schedule/' %}active{% endif %}">
+                    <span class="nav-icon">📅</span>
+                    Расписание
+                </a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+</body>
+</html>
+[file content end]
